@@ -32,7 +32,7 @@ class Genome:
 
     return result
 
-  def scan_genome_given_seq(self, genome, seq, window_lenght=3, stride = 1):
+  def scan_genome_given_seq(self, genome, seq, window_lenght=200, stride = 1):
 
     dict_result = dict()
 
