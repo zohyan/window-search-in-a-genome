@@ -2,23 +2,24 @@ from Bio import SeqIO
 
 # dict_genome = SeqIO.to_dict(SeqIO.parse("rmark3.fa", "fasta"))
 
-sequence = "EWAEWAEW"
-substring = ["EWA"]
+genome = "EWAEWA"
+seq = ["EW", "WA"]
 
-def find_indexes(seq, sub, window=3):
+def scan_genome_given_seq(genome, seq, window_lenght=3, stride = 1):
 
-    result = dict()
+    dict_result = dict()
 
-    for s in sub:
+    lenght_result = ((len(genome) - window_lenght)/stride) + 1
+
+    for s in seq:
 
         intermediate_list = []
+        for i in range(int(lenght_result)):
+            if s in genome[i:window_lenght + i]:
+                intermediate_list.append((genome[i:window_lenght + i], i, window_lenght + i))
 
-        for i in range(0, len(seq), window):
-            if seq[i:len(s) + i] == s:
-                intermediate_list.append((s, i, len(s)+i))
+        dict_result[s] = intermediate_list
 
-        result[s] = intermediate_list
+    return dict_result
 
-    return result
-
-print(find_indexes(sequence, substring))
+print(scan_genome_given_seq(genome, seq))
