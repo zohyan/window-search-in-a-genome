@@ -1,11 +1,11 @@
 from Bio import SeqIO
 
-dict_genome = SeqIO.to_dict(SeqIO.parse("rmark3.fa", "fasta"))
+# dict_genome = SeqIO.to_dict(SeqIO.parse("rmark3.fa", "fasta"))
 
-sequence = dict_genome['rmark1'].seq
-substring = ["GAG", "AUG"]
+sequence = "EWAEWAEW"
+substring = ["EWA"]
 
-def find_indexes(seq, sub):
+def find_indexes(seq, sub, window=3):
 
     result = dict()
 
@@ -13,7 +13,7 @@ def find_indexes(seq, sub):
 
         intermediate_list = []
 
-        for i in range(0, len(seq), 1):
+        for i in range(0, len(seq), window):
             if seq[i:len(s) + i] == s:
                 intermediate_list.append((s, i, len(s)+i))
 
@@ -21,4 +21,4 @@ def find_indexes(seq, sub):
 
     return result
 
-print(find_indexes(sequence, substring)["AUG"])
+print(find_indexes(sequence, substring))
