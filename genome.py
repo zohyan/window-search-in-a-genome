@@ -32,26 +32,39 @@ class Genome:
 
     return result
 
-  def scan_genome_given_seq(self, genome, seq, window_lenght=200, stride = 1):
+  def scan_genome_given_seq(self, genome, motif_list, window_lenght=200, stride=1, thrsehold=2):
 
-    dict_result = dict()
+    """
+      input :
+        - genome
+        - motif_list
+        - window_lenght
+        - stride
+
+      Returns the window whose number of sequences present is greater than a certain threshold.
+    """
+    list_result = list()
 
     lenght_result = ((len(genome) - window_lenght) / stride) + 1
 
-    for s in seq:
-      intermediate_list = []
-      for i in range(int(lenght_result)):
-        if s in genome[i:window_lenght + i]:
-          intermediate_list.append((i, window_lenght + i))
+    for i in range(int(lenght_result)):
 
-      dict_result[s] = intermediate_list
+      nb_motif_checked = 0
 
-    return dict_result
+      for motif in motif_list:
+        if motif in genome[i:window_lenght + i]:
+          nb_motif_checked += 1
+
+      if thrsehold == nb_motif_checked:
+        list_result.append((i, window_lenght + i))
+
+    return list_result
 
 if __name__ == "__main__":
   g = Genome('rmark3.fa')
   g.read_fasta()
   genome = g.dict_genome['rmark1'].seq
+  # a recuperer à partir d un fichier
   sequence = ["GAG", "AUG"]
   print(g.scan_genome_given_seq(genome, sequence))
 
