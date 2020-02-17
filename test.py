@@ -5,7 +5,7 @@ from Bio import SeqIO
 genome = "ABCABC"
 seq = ["AB", "BC"]
 
-def scan_genome_given_seq(genome, seq, window_lenght=3, stride=1, thersehold=2):
+def scan_genome_given_seq(genome, motif_list, window_lenght=3, stride=1, thrsehold=2):
 
     """
       input :
@@ -25,11 +25,11 @@ def scan_genome_given_seq(genome, seq, window_lenght=3, stride=1, thersehold=2):
 
         nb_motif_checked = 0
 
-        for s in seq:
+        for s in motif_list:
             if s in genome[i:window_lenght + i]:
                 nb_motif_checked += 1
 
-        if thersehold == nb_motif_checked:
+        if thrsehold == nb_motif_checked:
             list_result.append((i, window_lenght + i))
 
     return list_result
