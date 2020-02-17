@@ -36,13 +36,14 @@ class Genome:
 
     """
       input :
-        - genome
-        - motif_list
-        - window_lenght
-        - stride
+        - genome : string representing the long string which is the genome
+        - motif_list : list of "motif" to check if it exists in a window
+        - window_lenght : length of the window where we must check the "motifs"
+        - stride : window displacement stride
 
       Returns the window whose number of sequences present is greater than a certain threshold.
     """
+
     list_result = list()
 
     lenght_result = ((len(genome) - window_lenght) / stride) + 1
