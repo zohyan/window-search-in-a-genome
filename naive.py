@@ -1,9 +1,5 @@
-from Bio import SeqIO
+from genome import Genome
 
-# dict_genome = SeqIO.to_dict(SeqIO.parse("rmark3.fa", "fasta"))
-
-genome = "ABCABC"
-seq = ["AB", "BC"]
 
 def scan_genome_given_seq(genome, seq, window_lenght=3, stride=1, thersehold=2):
 
@@ -34,4 +30,13 @@ def scan_genome_given_seq(genome, seq, window_lenght=3, stride=1, thersehold=2):
 
     return list_result
 
-print(scan_genome_given_seq(genome, seq))
+if __name__ == "__main__":
+    g = Genome('rmark3.fa')
+    g.read_fasta()
+    genome = g.dict_genome['rmark1'].seq
+    sequence = ["AUG"]
+
+    for pattern in sequence:
+        print(scan_genome_given_seq(genome, pattern))
+
+
