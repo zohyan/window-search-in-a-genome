@@ -1,5 +1,5 @@
 from genome import Genome
-
+from time import time
 
 def scan_genome_given_seq(genome, seq, window_lenght=3, stride=1, thersehold=2):
 
@@ -36,7 +36,12 @@ if __name__ == "__main__":
     genome = g.dict_genome['rmark1'].seq
     sequence = ["AUG"]
 
+    t1 = time()
+
     for pattern in sequence:
         print(scan_genome_given_seq(genome, pattern))
 
+    t2 = time()
+
+    print('Elapsed time is %f seconds.' % (t2 - t1))
 

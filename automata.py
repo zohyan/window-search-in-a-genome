@@ -1,7 +1,7 @@
 # "credit to https://www.geeksforgeeks.org/finite-automata-algorithm-for-pattern-searching/"
 
 from genome import Genome
-
+from time import time
 
 NO_OF_CHARS = 256
 
@@ -57,4 +57,7 @@ if __name__ == '__main__':
     g.read_fasta()
     genome = g.dict_genome['rmark1'].seq
     sequence = "AUG"
+    t1 = time()
     print(search(sequence, genome))
+    t2 = time()
+    print('Elapsed time is %f seconds.' % (t2 - t1))

@@ -1,5 +1,5 @@
 from genome import Genome
-
+from time import time
 
 def kmp_matcher(T , P):
 
@@ -27,11 +27,13 @@ def prefixfunction(pattern):
         pi.append(j + 1 if pattern[j] == pattern[i] else j)
     return pi
 
-
 if __name__ == "__main__":
+
     g = Genome('rmark3.fa')
     g.read_fasta()
     genome = g.dict_genome['rmark1'].seq
     sequence = "AUG"
-
+    t1 = time()
     print(kmp_matcher(genome, sequence))
+    t2 = time()
+    print('Elapsed time is %f seconds.' % (t2 - t1))
